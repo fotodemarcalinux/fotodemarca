@@ -1,0 +1,88 @@
+/* Wrapper da Seção */
+.image-text-wrapper {
+    margin: 40px 0;
+}
+
+/* Estilos para a Seção de Imagem com Texto */
+.image-text-section {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: space-between; /* Espaço entre imagem e texto */
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-text-section img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-text-content {
+    flex: 1;
+    text-align: left; /* Garante alinhamento à esquerda */
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.image-text-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 700;
+    line-height: 1.2; /* Reduz o espaçamento entre as linhas do título */
+}
+
+.image-text-content p {
+    font-size: 1rem;
+    line-height: 1.5; /* Leve ajuste no espaçamento de linha */
+    margin-bottom: 15px;
+    color: #666;
+    font-weight: 400;
+}
+
+/* Botão de Ação */
+.action-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333333; /* Cor principal do botão */
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #0a0a0a; /* Cor mais escura ao passar o mouse */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .image-text-section {
+        flex-direction: column; /* Altera para coluna em telas pequenas */
+        text-align: left; /* Alinha o conteúdo à esquerda */
+    }
+
+    .image-text-section img {
+        max-width: 100%; /* Imagem ocupa toda a largura */
+    }
+
+    .image-text-content {
+        text-align: left; /* Alinha o conteúdo à esquerda no responsivo */
+    }
+
+    .action-button {
+        margin-top: 10px; /* Espaçamento adicional para o botão */
+    }
+}

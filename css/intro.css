@@ -1,0 +1,116 @@
+/* Estilo da Seção Intro */
+.intro-section {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    text-align: center; /* Garante que o texto fique alinhado ao centro */
+    padding: 50px 20px;
+    background-color: #f9f9f9; /* Cor de fundo opcional */
+}
+
+.intro {
+    max-width: 800px; /* Limita a largura do conteúdo */
+}
+
+.intro h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.intro p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Estilo dos Botões */
+.intro-buttons {
+    display: flex;
+    justify-content: center; /* Centraliza os botões dentro do contêiner */
+    align-items: center; /* Garante centralização vertical */
+    gap: 10px; /* Espaço entre os botões */
+    flex-wrap: wrap; /* Permite empilhar em telas menores */
+}
+
+.button {
+    display: inline-block; /* Faz os links parecerem botões */
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+/* Botão Primário */
+.primary-button {
+    background-color: #333333; /* alterar cor dos botoes aqui */
+    color: #fff;
+    border: none;
+}
+
+.primary-button:hover {
+    background-color: #333333; /* alterar cor dos botoes aqui */
+    color: #fff;
+}
+
+/* Botão Secundário */ /* alterar cor dos botoes aqui */
+.secondary-button {
+    background-color: transparent;
+    color: #333333;
+    border: 2px solid #333333;
+}
+
+.secondary-button:hover {
+    background-color: #333333;
+    color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .intro-section {
+        padding: 30px 10px;
+    }
+
+    .intro h2 {
+        font-size: 1.8rem;
+    }
+
+    .intro p {
+        font-size: 1rem;
+    }
+
+    .intro-buttons {
+        flex-direction: column; /* Empilha os botões verticalmente */
+        align-items: center; /* Garante alinhamento ao centro no modo empilhado */
+    }
+
+    .button {
+        width: 100%; /* Botões ocupam toda a largura */
+        max-width: 300px; /* Limite de largura */
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-section {
+        padding: 20px 5px;
+    }
+
+    .intro h2 {
+        font-size: 1.6rem;
+    }
+
+    .intro p {
+        font-size: 0.9em;
+    }
+
+    .intro-buttons {
+        gap: 10px; /* Ajusta o espaçamento para telas muito pequenas */
+    }
+
+    .button {
+        padding: 8px 15px; /* Ajusta o padding para botões menores */
+    }
+}

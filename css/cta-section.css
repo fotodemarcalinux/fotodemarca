@@ -1,0 +1,49 @@
+/* Wrapper da Seção */
+.cta-wrapper {
+    margin: 40px 0;
+}
+
+/* Estilo da Seção de Call-to-Action */
+.cta-section {
+    /* Remove a imagem padrão */
+    background-color: #333; /* Cor de fundo alternativa se não houver imagem */
+    padding: 60px 20px;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Permite que o HTML inline defina a imagem */
+.cta-wrapper[style*="background-image"] .cta-section {
+    background: none; /* Remove qualquer imagem do CSS */
+}
+
+/* Conteúdo da Seção */
+.cta-content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Estilo do Botão */
+.cta-button {
+    background-color: #00bf63;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0a6338;
+}

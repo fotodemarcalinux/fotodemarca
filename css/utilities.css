@@ -1,0 +1,40 @@
+/* Padding e Margem Globais */
+.section {
+    padding: 60px 20px;
+}
+
+.section-light {
+    background-color: #f9f9f9;
+}
+
+.section-dark {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Centralização */
+.text-center {
+    text-align: center;
+}
+
+.max-width {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Classes de Espaçamento */
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.pt-20 {
+    padding-top: 20px;
+}
+
+.pb-20 {
+    padding-bottom: 20px;
+}

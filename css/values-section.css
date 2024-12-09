@@ -1,0 +1,45 @@
+/* Wrapper da Seção */
+.values-wrapper {
+    margin: 40px 0;
+}
+
+/* Estilo da Seção de Valores */
+.values-section {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.values-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.values-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.value-card {
+    flex: 1 1 300px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.value-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #2575fc;
+}
+
+.value-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}

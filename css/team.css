@@ -1,0 +1,103 @@
+.team {
+    background: #fff;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.team-header {
+    margin-bottom: 40px;
+}
+
+.team-header h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.team-header p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.team-members {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: center;
+    flex: 1 1 calc(33.333% - 20px); /* 3 colunas */
+    box-sizing: border-box;
+    display: flex; /* Flexbox para centralizar conteúdo */
+    flex-direction: column; /* Elementos em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.team-member h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.team-member p {
+    font-size: 1em;
+    color: #555;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .team-member {
+        flex: 1 1 calc(50% - 20px); /* 2 colunas em telas menores */
+    }
+
+    .team-header h2 {
+        font-size: 2em;
+    }
+
+    .team-header p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-member {
+        flex: 1 1 100%; /* 1 coluna em telas pequenas */
+    }
+
+    .team-header h2 {
+        font-size: 1.8em;
+    }
+
+    .team-header p {
+        font-size: 0.9em;
+    }
+
+    .team-member img {
+        width: 120px;
+        height: 120px; /* Ajusta o tamanho da imagem */
+    }
+
+    .team-member h3 {
+        font-size: 1.3em;
+    }
+
+    .team-member p {
+        font-size: 0.9em;
+    }
+}
