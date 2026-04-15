@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Promoção - Fotos na Nuvem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen py-8 px-4">
+
+<div class="max-w-2xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-slate-800 tracking-tight">
+            📸 Gerador Promocional <span class="text-orange-600">Nuvem</span>
+        </h1>
+        <p class="text-slate-500 mt-2">Crie textos persuasivos para suas ofertas de álbuns digitais.</p>
+    </div>
+
+    <div class="glass-card rounded-2xl shadow-xl p-6 md:p-8">
+        <div class="grid grid-cols-1 gap-6">
+            
+            <!-- Álbum Name -->
+            <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-700">Identificação do Álbum</label>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <select id="artigo" class="w-full sm:w-24 p-2.5 border rounded-lg bg-white focus:ring-2 focus:ring-orange-500 outline-none transition-all">
+                        <option value="do">do</option>
+                        <option value="da">da</option>
+                    </select>
+                    <input type="text" id="campoTexto1" placeholder="Ex: Casamento de Ana e Leandro" 
+                           class="flex-1 p-2.5 border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none transition-all">
+                </div>
+            </div>
+
+            <!-- Valores -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-slate-700">Preço Promocional (R$)</label>
+                    <input type="text" id="campoValor1" placeholder="Ex: 149,90" 
+                           class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-slate-700">Preço Final (Urgência R$)</label>
+                    <input type="text" id="campoValor2" placeholder="Ex: 97,00" 
+                           class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
+                </div>
+            </div>
+
+            <!-- Validade -->
+            <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-700">Data de Validade da Oferta</label>
+                <input type="date" id="dataValidade" 
+                       class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
+            </div>
+
+            <!-- Actions -->
+            <div class="flex gap-3 pt-4">
+                <button onclick="gerarTexto()" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-orange-200 flex items-center justify-center gap-2">
+                    <i class="fas fa-magic"></i> Gerar Texto
+                </button>
+                <button onclick="copiarTexto()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Output Area -->
+        <div id="resultContainer" class="hidden mt-8 transition-all animate-in fade-in slide-in-from-top-4">
+            <label class="block text-sm font-bold text-slate-800 mb-2 uppercase tracking-wider">Resultado:</label>
+            <div id="output" class="p-5 bg-orange-50 border-2 border-orange-100 rounded-xl text-slate-700 text-sm leading-relaxed whitespace-pre-wrap italic"></div>
+        </div>
+    </div>
+
+    <!-- Info Box -->
+    <div class="mt-6 p-4 bg-blue-50 border border-blue-100 rounded-lg flex gap-3 items-start">
+        <i class="fas fa-info-circle text-blue-500 mt-1"></i>
+        <p class="text-xs text-blue-700">
+            <strong>Dica:</strong> O texto gerado inclui gatilhos de urgência e clareza sobre o acesso à nuvem, otimizado para WhatsApp.
+        </p>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl opacity-0 transition-opacity pointer-events-none flex items-center gap-2">
+    <i class="fas fa-check-circle text-green-400"></i> Texto copiado para a área de transferência!
+</div>
+
+<script>
+    function formatarMoeda(valor) {
+        if (!valor) return "0,00";
+        return valor.replace(".", ",");
+    }
+
+    function gerarTexto() {
+        const artigo = document.getElementById('artigo').value;
+        const campoTexto1 = document.getElementById('campoTexto1').value || "[Nome do Evento]";
+        const campoValor1 = formatarMoeda(document.getElementById('campoValor1').value);
+        const campoValor2 = formatarMoeda(document.getElementById('campoValor2').value);
+        const dataValidade = document.getElementById('dataValidade').value;
+
+        if (!dataValidade) {
+            showToast("⚠️ Selecione uma data de validade!", "text-orange-400");
+            return;
+        }
+
+        const data = new Date(dataValidade);
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        const dataPorExtenso = data.toLocaleDateString('pt-BR', options);
+
+        const texto = `Estamos com uma super promoção! 🎁
+
+📸 *Promoção Imperdível:* Todas as Fotos *${artigo} ${campoTexto1}* na Nuvem! 📸
+
+A 'nuvem' é uma plataforma online segura onde você pode guardar e acessar suas memórias de qualquer lugar (celular, tablet ou computador) sem ocupar espaço no seu aparelho. 
+
+Aproveite essa chance única de ter todas as fotos *${artigo} ${campoTexto1}* em alta resolução.
+
+O valor padrão deste pacote é ~~R$ 500,00~~. 
+Na promoção de hoje, sai por *R$ ${campoValor1}*.
+
+🔥 *BÔNUS DE URGÊNCIA:* Se você fechar até o dia *${dataPorExtenso}*, você garante todas as fotos por apenas *R$ ${campoValor2}*!
+
+✅ *O que está incluso:*
+- Galeria completa *${artigo} ${campoTexto1}*.
+- Acesso imediato via link seguro.
+- Facilidade para compartilhar com família e amigos.
+
+💰 *Economize mais de 80%!* Não deixe suas lembranças guardadas apenas na memória, garanta o seu arquivo digital agora.
+
+⏳ *IMPORTANTE:* Recomendamos que você faça o download de todas as fotos nos primeiros *30 dias*. O link permanecerá ativo por no máximo 60 dias após a compra. Guarde bem o seu arquivo!`;
+
+        const output = document.getElementById('output');
+        const container = document.getElementById('resultContainer');
+        
+        output.innerText = texto;
+        container.classList.remove('hidden');
+        
+        // Scroll suave até o resultado
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    function showToast(msg, iconClass = "text-green-400") {
+        const toast = document.getElementById('toast');
+        toast.innerHTML = `<i class="fas fa-info-circle ${iconClass}"></i> ${msg}`;
+        toast.classList.remove('opacity-0');
+        setTimeout(() => toast.classList.add('opacity-0'), 3000);
+    }
+
+    function copiarTexto() {
+        const outputDiv = document.getElementById('output');
+        const text = outputDiv.innerText;
+
+        if (!text) {
+            showToast("⚠️ Gere o texto primeiro!", "text-orange-400");
+            return;
+        }
+
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast("Copiado com sucesso!");
+        } catch (err) {
+            showToast("Erro ao copiar", "text-red-400");
+        }
+        document.body.removeChild(textArea);
+    }
+</script>
+
+</body>
+</html>
